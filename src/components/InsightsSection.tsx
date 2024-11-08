@@ -46,40 +46,40 @@ const InsightsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-12 sm:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-3 sm:mb-4">
             Industry Insights & Trends
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
             Stay updated with the latest developments in the construction equipment industry
           </p>
         </motion.div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 mb-10 sm:mb-16">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="text-center"
+              className="text-center p-4 sm:p-6 bg-white rounded-lg shadow-sm"
             >
-              <div className="text-3xl font-bold text-blue-900 mb-2">{stat.value}</div>
-              <div className="text-gray-600">{stat.label}</div>
+              <div className="text-2xl sm:text-3xl font-bold text-blue-900 mb-1 sm:mb-2">{stat.value}</div>
+              <div className="text-sm sm:text-base text-gray-600">{stat.label}</div>
             </motion.div>
           ))}
         </div>
 
         {/* Insights Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {insights.map((insight, index) => (
             <motion.div
               key={index}
@@ -88,39 +88,39 @@ const InsightsSection: React.FC = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-white rounded-xl shadow-lg overflow-hidden"
             >
-              <div className="relative h-48">
+              <div className="relative h-48 sm:h-56">
                 <img
                   src={insight.image}
                   alt={insight.title}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm">
+                  <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs sm:text-sm">
                     {insight.category}
                   </span>
                 </div>
               </div>
-              
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-blue-900 mb-2">
+
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-blue-900 mb-2">
                   {insight.title}
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-sm sm:text-base text-gray-600 mb-4">
                   {insight.description}
                 </p>
-                <div className="flex justify-between items-center text-sm text-gray-500">
+                <div className="flex justify-between items-center text-xs sm:text-sm text-gray-500">
                   <span>{insight.date}</span>
                   <span>{insight.readTime}</span>
                 </div>
-                
+
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="mt-4 text-blue-500 font-semibold flex items-center hover:text-blue-600"
+                  className="mt-4 text-blue-500 font-semibold flex items-center hover:text-blue-600 text-sm sm:text-base"
                 >
                   Read More
                   <svg
-                    className="w-5 h-5 ml-2"
+                    className="w-4 h-4 sm:w-5 sm:h-5 ml-2"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -143,22 +143,22 @@ const InsightsSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-16 text-center bg-blue-900 rounded-2xl p-8 text-white"
+          className="mt-10 sm:mt-16 text-center bg-blue-900 rounded-2xl p-6 sm:p-8 text-white"
         >
-          <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
-          <p className="mb-6 text-blue-100">
+          <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Stay Updated</h3>
+          <p className="mb-4 sm:mb-6 text-blue-100 text-sm sm:text-base">
             Subscribe to our newsletter for the latest industry insights and updates
           </p>
-          <div className="max-w-md mx-auto flex gap-4">
+          <div className="max-w-md mx-auto flex flex-col sm:flex-row gap-3 sm:gap-4">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 px-4 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
             />
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300"
+              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300 text-sm sm:text-base"
             >
               Subscribe
             </motion.button>
