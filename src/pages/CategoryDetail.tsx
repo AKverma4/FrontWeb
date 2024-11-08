@@ -172,30 +172,30 @@ const CategoryDetail: React.FC = () => {
               <div className="md:flex">
                 <div className="md:flex-shrink-0">
                   <img
-                    className="h-64 w-full md:w-96 object-cover"
+                    className="h-48 md:h-64 w-full md:w-96 object-cover"
                     src={equipment.image}
                     alt={equipment.name}
                   />
                 </div>
-                <div className="p-8 w-full">
-                  <div className="flex justify-between items-start">
+                <div className="p-4 md:p-8 w-full">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 md:gap-0">
                     <div>
-                      <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                      <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
                         {equipment.name}
                       </h2>
                       <p className="text-gray-600 mb-4">
                         {equipment.description}
                       </p>
                     </div>
-                    <div className="text-right">
+                    <div className="text-left md:text-right">
                       <div className="text-sm text-gray-500">Starting from</div>
-                      <div className="text-2xl font-bold text-blue-900">
+                      <div className="text-xl md:text-2xl font-bold text-blue-900">
                         ₹{equipment.dailyRate.toLocaleString('en-IN')}/day
                       </div>
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6 mt-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                     <div>
                       <h3 className="text-lg font-semibold mb-3">Specifications</h3>
                       <div className="space-y-2">
@@ -219,8 +219,8 @@ const CategoryDetail: React.FC = () => {
                   </div>
 
                   <div className="mt-8 border-t pt-6">
-                    <div className="flex justify-between items-center">
-                      <div className="grid grid-cols-3 gap-4 text-center">
+                    <div className="flex flex-col md:flex-row gap-4 md:gap-0 justify-between items-center">
+                      <div className="grid grid-cols-3 gap-2 md:gap-4 text-center w-full md:w-auto">
                         <div>
                           <div className="text-sm text-gray-500">Daily Rate</div>
                           <div className="font-semibold">₹{equipment.dailyRate.toLocaleString('en-IN')}</div>
@@ -234,7 +234,7 @@ const CategoryDetail: React.FC = () => {
                           <div className="font-semibold">₹{equipment.monthlyRate.toLocaleString('en-IN')}</div>
                         </div>
                       </div>
-                      <button className="bg-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-800 
+                      <button className="w-full md:w-auto bg-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-800 
                         transition-colors duration-300">
                         Request Quote
                       </button>
