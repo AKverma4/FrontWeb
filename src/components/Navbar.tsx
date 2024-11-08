@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+  };
+
   React.useEffect(() => {
     const styleSheet = document.createElement('style');
     styleSheet.textContent = `
@@ -110,6 +114,7 @@ const Navbar: React.FC = () => {
                 padding: '10px 20px',
                 borderRadius: '8px',
               }}
+              onClick={handleLinkClick}
               onMouseOver={(e) => {
                 e.currentTarget.style.backgroundColor = '#EEF2FF';
                 e.currentTarget.style.transform = 'translateY(-2px)';
