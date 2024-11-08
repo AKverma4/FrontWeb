@@ -42,10 +42,17 @@ const Footer: React.FC = () => {
               display: 'flex',
               gap: '16px',
             }}>
-              {[FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram].map((Icon, index) => (
+              {[
+                { Icon: FaFacebookF, url: 'https://www.facebook.com/ajayverma.666/' },
+                { Icon: FaTwitter, url: '#' },
+                { Icon: FaLinkedinIn, url: 'https://www.linkedin.com/in/ak-verma2002/' },
+                { Icon: FaInstagram, url: 'https://www.instagram.com/ajayk_002/' }
+              ].map(({ Icon, url }, index) => (
                 <a
                   key={index}
-                  href="#"
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
                     width: '40px',
                     height: '40px',
