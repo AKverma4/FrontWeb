@@ -31,14 +31,14 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, tool }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-2 sm:p-4"
         onClick={onClose}
       >
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
-          className="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+          className="bg-white rounded-xl p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
           onClick={e => e.stopPropagation()}
         >
           <div className="flex justify-between items-start mb-6">
@@ -61,7 +61,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, tool }) => {
 
           <p className="text-gray-600 mb-6">{tool.description}</p>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
               <h4 className="font-semibold text-lg mb-3">Features</h4>
               <ul className="list-disc list-inside space-y-2">
@@ -83,7 +83,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, tool }) => {
 
           <div className="mt-6 border-t pt-6">
             <h4 className="font-semibold text-lg mb-4">Rental Rates</h4>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
               <div className="text-center p-4 bg-gray-50 rounded-lg">
                 <div className="text-sm text-gray-500">Daily</div>
                 <div className="text-xl font-bold text-blue-900">₹{tool.details.rentalRates.daily}</div>
@@ -111,23 +111,23 @@ const ToolCard: React.FC<ToolCardProps> = (props) => {
     <>
       <motion.div
         whileHover={{ y: -5 }}
-        className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300"
+        className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 h-full"
       >
         <img 
           src={props.image} 
           alt={props.title}
-          className="w-full h-48 object-cover"
+          className="w-full h-40 sm:h-48 object-cover"
         />
-        <div className="p-6">
-          <h3 className="text-xl font-semibold text-blue-900 mb-2">{props.title}</h3>
-          <p className="text-gray-600 mb-4 min-h-[48px]">{props.description}</p>
+        <div className="p-4 sm:p-6 flex flex-col h-full">
+          <h3 className="text-lg sm:text-xl font-semibold text-blue-900 mb-2">{props.title}</h3>
+          <p className="text-gray-600 mb-4 flex-grow">{props.description}</p>
           <button
             onClick={() => setIsModalOpen(true)}
             className="w-full bg-blue-900 text-white py-2 px-4 rounded-lg 
               hover:bg-blue-800 transition-colors duration-300 flex items-center justify-center"
           >
             Learn More
-            <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 sm:w-5 h-4 sm:h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -371,23 +371,23 @@ const EfficiencySection: React.FC = () => {
   ];
 
   return (
-    <section className="bg-gray-50 py-20">
+    <section className="bg-gray-50 py-12 sm:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
-          <h2 className="text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-3 sm:mb-4">
             Unlock Efficiency: Rent The Right Tools
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
             Access professional-grade equipment to maximize your project's efficiency
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
           {tools.map((tool, index) => (
             <ToolCard key={index} {...tool} />
           ))}
