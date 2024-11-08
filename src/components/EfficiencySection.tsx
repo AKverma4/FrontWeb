@@ -41,13 +41,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, tool }) => {
           className="bg-white rounded-xl p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
           onClick={e => e.stopPropagation()}
         >
-          <div className="flex justify-between items-start mb-6">
-            <h3 className="text-2xl font-bold text-blue-900">{tool.title}</h3>
+          <div className="flex justify-between items-start mb-4 sm:mb-6">
+            <h3 className="text-xl sm:text-2xl font-bold text-blue-900">{tool.title}</h3>
             <button
               onClick={onClose}
-              className="text-gray-500 hover:text-gray-700"
+              className="text-gray-500 hover:text-gray-700 p-1"
             >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -56,15 +56,15 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, tool }) => {
           <img
             src={tool.image}
             alt={tool.title}
-            className="w-full h-64 object-cover rounded-lg mb-6"
+            className="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 sm:mb-6"
           />
 
-          <p className="text-gray-600 mb-6">{tool.description}</p>
+          <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">{tool.description}</p>
 
-          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
-              <h4 className="font-semibold text-lg mb-3">Features</h4>
-              <ul className="list-disc list-inside space-y-2">
+              <h4 className="font-semibold text-base sm:text-lg mb-2 sm:mb-3">Features</h4>
+              <ul className="list-disc list-inside space-y-1 sm:space-y-2 text-sm sm:text-base">
                 {tool.details.features.map((feature, index) => (
                   <li key={index} className="text-gray-600">{feature}</li>
                 ))}
@@ -72,8 +72,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, tool }) => {
             </div>
 
             <div>
-              <h4 className="font-semibold text-lg mb-3">Specifications</h4>
-              <ul className="list-disc list-inside space-y-2">
+              <h4 className="font-semibold text-base sm:text-lg mb-2 sm:mb-3">Specifications</h4>
+              <ul className="list-disc list-inside space-y-1 sm:space-y-2 text-sm sm:text-base">
                 {tool.details.specifications.map((spec, index) => (
                   <li key={index} className="text-gray-600">{spec}</li>
                 ))}
@@ -81,20 +81,20 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, tool }) => {
             </div>
           </div>
 
-          <div className="mt-6 border-t pt-6">
-            <h4 className="font-semibold text-lg mb-4">Rental Rates</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <div className="text-sm text-gray-500">Daily</div>
-                <div className="text-xl font-bold text-blue-900">₹{tool.details.rentalRates.daily}</div>
+          <div className="mt-4 sm:mt-6 border-t pt-4 sm:pt-6">
+            <h4 className="font-semibold text-base sm:text-lg mb-3 sm:mb-4">Rental Rates</h4>
+            <div className="grid grid-cols-3 gap-2 sm:gap-4">
+              <div className="text-center p-2 sm:p-4 bg-gray-50 rounded-lg">
+                <div className="text-xs sm:text-sm text-gray-500">Daily</div>
+                <div className="text-lg sm:text-xl font-bold text-blue-900">₹{tool.details.rentalRates.daily}</div>
               </div>
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <div className="text-sm text-gray-500">Weekly</div>
-                <div className="text-xl font-bold text-blue-900">₹{tool.details.rentalRates.weekly}</div>
+              <div className="text-center p-2 sm:p-4 bg-gray-50 rounded-lg">
+                <div className="text-xs sm:text-sm text-gray-500">Weekly</div>
+                <div className="text-lg sm:text-xl font-bold text-blue-900">₹{tool.details.rentalRates.weekly}</div>
               </div>
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <div className="text-sm text-gray-500">Monthly</div>
-                <div className="text-xl font-bold text-blue-900">₹{tool.details.rentalRates.monthly}</div>
+              <div className="text-center p-2 sm:p-4 bg-gray-50 rounded-lg">
+                <div className="text-xs sm:text-sm text-gray-500">Monthly</div>
+                <div className="text-lg sm:text-xl font-bold text-blue-900">₹{tool.details.rentalRates.monthly}</div>
               </div>
             </div>
           </div>
@@ -111,23 +111,23 @@ const ToolCard: React.FC<ToolCardProps> = (props) => {
     <>
       <motion.div
         whileHover={{ y: -5 }}
-        className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 h-full"
+        className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300"
       >
-        <img 
-          src={props.image} 
+        <img
+          src={props.image}
           alt={props.title}
           className="w-full h-40 sm:h-48 object-cover"
         />
-        <div className="p-4 sm:p-6 flex flex-col h-full">
+        <div className="p-4 sm:p-6">
           <h3 className="text-lg sm:text-xl font-semibold text-blue-900 mb-2">{props.title}</h3>
-          <p className="text-gray-600 mb-4 flex-grow">{props.description}</p>
+          <p className="text-sm sm:text-base text-gray-600 mb-4 min-h-[40px] sm:min-h-[48px]">{props.description}</p>
           <button
             onClick={() => setIsModalOpen(true)}
             className="w-full bg-blue-900 text-white py-2 px-4 rounded-lg 
-              hover:bg-blue-800 transition-colors duration-300 flex items-center justify-center"
+              hover:bg-blue-800 transition-colors duration-300 flex items-center justify-center text-sm sm:text-base"
           >
             Learn More
-            <svg className="w-4 sm:w-5 h-4 sm:h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -377,7 +377,7 @@ const EfficiencySection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-8 sm:mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-3 sm:mb-4">
             Unlock Efficiency: Rent The Right Tools
@@ -387,7 +387,7 @@ const EfficiencySection: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {tools.map((tool, index) => (
             <ToolCard key={index} {...tool} />
           ))}
