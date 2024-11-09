@@ -8,6 +8,7 @@ const LoginForm: React.FC = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { login } = useAuth();
+  const [showWelcome, setShowWelcome] = React.useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -15,7 +16,11 @@ const LoginForm: React.FC = () => {
     
     try {
       await login(email, password);
-      navigate('/');
+      setShowWelcome(true);
+      setTimeout(() => {
+        setShowWelcome(false);
+        navigate('/');
+      }, 3000);
     } catch (err) {
       setError('Invalid email or password. Please try again.');
     }
@@ -137,6 +142,24 @@ const LoginForm: React.FC = () => {
           </p>
         </div>
       </div>
+      {showWelcome && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            background: 'white',
+            padding: '20px',
+            borderRadius: '10px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            zIndex: 1000,
+            animation: 'fadeIn 0.5s ease-out'
+          }}
+        >
+          <span style={{ fontSize: '24px' }}>👋 Hi, Welcome back!</span>
+        </div>
+      )}
     </div>
   );
 };

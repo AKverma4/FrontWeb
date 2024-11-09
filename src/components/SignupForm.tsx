@@ -10,6 +10,7 @@ const SignupForm: React.FC = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { signup } = useAuth();
+  const [showWelcome, setShowWelcome] = React.useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -22,7 +23,11 @@ const SignupForm: React.FC = () => {
     
     try {
       await signup(name, email, password);
-      navigate('/');
+      setShowWelcome(true); // Show welcome message
+      setTimeout(() => {
+        setShowWelcome(false);
+        navigate('/');
+      }, 3000); // Hide after 3 seconds and navigate
     } catch (err) {
       setError('Failed to create an account. Please try again.');
     }
@@ -168,6 +173,24 @@ const SignupForm: React.FC = () => {
           </p>
         </div>
       </div>
+      {showWelcome && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            background: 'white',
+            padding: '20px',
+            borderRadius: '10px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            zIndex: 1000,
+            animation: 'fadeIn 0.5s ease-out'
+          }}
+        >
+          <span style={{ fontSize: '24px' }}>👋 Hi, Welcome to DiGiMart!</span>
+        </div>
+      )}
     </div>
   );
 };

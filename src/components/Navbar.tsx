@@ -210,6 +210,9 @@ const Navbar: React.FC = () => {
                   fontSize: '16px',
                   fontWeight: '600',
                   letterSpacing: '0.3px',
+                  display: 'block',
+                  alignItems: 'center',
+                  gap: '0px',
                 }}
                 onMouseOver={(e) => {
                   e.currentTarget.style.transform = 'translateY(-2px)';
@@ -220,7 +223,7 @@ const Navbar: React.FC = () => {
                   e.currentTarget.style.backgroundColor = '#EEF2FF';
                 }}
               >
-                <span>Hi, {user.name}</span>
+                <span>👋 Hi, {user.name} </span>
                 <svg 
                   className={`w-4 h-4 transition-transform ${isProfileOpen ? 'rotate-180' : ''}`}
                   xmlns="http://www.w3.org/2000/svg" 

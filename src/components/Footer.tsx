@@ -95,9 +95,29 @@ const Footer: React.FC = () => {
           <div>
             <h4 style={headingStyle}>Services</h4>
             <ul style={{ listStyle: 'none', padding: 0 }}>
-              {['Digital Solutions', 'IT Consulting', 'Software Development', 'Cloud Services', 'Data Analytics'].map((item) => (
+              {[
+                'Equipment Rental',
+                'Construction Tools',
+                'Event Equipment',
+                'Power Tools',
+                'Heavy Machinery',
+                'Delivery & Pickup',
+                'Maintenance Services',
+                'Insurance Coverage'
+              ].map((item) => (
                 <li key={item} style={{ marginBottom: '12px' }}>
-                  <Link to="#" style={linkStyle}>{item}</Link>
+                  <Link 
+                    to="#" 
+                    style={linkStyle}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.color = '#3b82f6';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.color = '#94a3b8';
+                    }}
+                  >
+                    {item}
+                  </Link>
                 </li>
               ))}
             </ul>
