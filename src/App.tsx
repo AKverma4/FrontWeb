@@ -14,6 +14,11 @@ import CategoryPage from './pages/CategoryPage';
 import Browse from './pages/Browse';
 import CategoryDetail from './pages/CategoryDetail';
 import { AuthProvider } from './context/AuthContext';
+import About from './components/About';
+import Programs from './components/Programs';
+import Trainers from './components/Trainers';
+import Testimonials from './components/Testimonials';
+import Contact from './components/Contact';
 
 const App: React.FC = () => {
   return (
@@ -38,6 +43,11 @@ const App: React.FC = () => {
             <Route path="/categories" element={<CategoryPage />} />
             <Route path="/categories/:categoryName" element={<CategoryDetail />} />
             <Route path="/get-quote" element={<QuoteForm />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/programs" element={<Programs />} />
+            <Route path="/trainers" element={<Trainers />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
           <Footer />
         </div>
