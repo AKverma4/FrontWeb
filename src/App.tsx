@@ -19,6 +19,7 @@ import Programs from './components/Programs';
 import Trainers from './components/Trainers';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
+import TrainerProfile from './components/TrainerProfile';
 
 const App: React.FC = () => {
   return (
@@ -48,6 +49,7 @@ const App: React.FC = () => {
             <Route path="/trainers" element={<Trainers />} />
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/trainer/:id" element={<TrainerProfile />} />
           </Routes>
           <Footer />
         </div>
