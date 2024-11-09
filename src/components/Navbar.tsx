@@ -50,14 +50,15 @@ const Navbar: React.FC = () => {
 
   return (
     <nav style={{
-      backgroundColor: 'rgba(255, 255, 255, 0.98)',
+      background: 'linear-gradient(to right, #ffffff, #f8faff)',
       padding: '20px 20px',
-      boxShadow: '0 4px 24px rgba(0,0,0,0.03)',
+      boxShadow: '0 4px 24px rgba(15, 23, 42, 0.08)',
       position: 'sticky',
       top: 0,
       zIndex: 1000,
       backdropFilter: 'blur(10px)',
       WebkitBackdropFilter: 'blur(10px)',
+      borderBottom: '1px solid rgba(148, 163, 184, 0.1)',
     }}>
       <div style={{
         maxWidth: '1340px',
@@ -108,21 +109,15 @@ const Navbar: React.FC = () => {
           <div style={{ width: '24px', height: '2px', background: '#1e40af' }}></div>
         </button>
 
-        <div style={{
+        <div className="nav-links" style={{
           display: isMenuOpen ? 'flex' : 'flex',
           gap: '48px',
-        }} className="nav-links">
+        }}>
           {['Home', 'Equipment', 'Categories', 'About', 'Contact'].map((item) => (
             <Link 
               key={item}
               to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-              style={{
-                ...linkStyle,
-                position: 'relative',
-                overflow: 'hidden',
-                padding: '10px 20px',
-                borderRadius: '8px',
-              }}
+              style={linkStyle}
               onClick={handleLinkClick}
               onMouseOver={(e) => {
                 e.currentTarget.style.backgroundColor = '#EEF2FF';
@@ -160,44 +155,121 @@ const Navbar: React.FC = () => {
               {item}
             </Link>
           ))}
+          <Link 
+            to="/get-quote"
+            className="get-quote-button"
+            style={{
+              padding: '14px 32px',
+              background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '10px',
+              cursor: 'pointer',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+              fontSize: '16px',
+              fontWeight: '600',
+              letterSpacing: '0.3px',
+              boxShadow: '0 4px 16px rgba(30,64,175,0.15)',
+            }}
+            onClick={handleLinkClick}
+            onMouseOver={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(30,64,175,0.25)';
+              e.currentTarget.style.filter = 'brightness(1.1)';
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.transform = 'translateY(0) scale(1)';
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(30,64,175,0.15)';
+              e.currentTarget.style.filter = 'brightness(1)';
+            }}
+          >
+            Get Quote
+          </Link>
         </div>
 
-        <Link 
-          to="/get-quote"
-          className="get-quote-button"
-          style={{
-            padding: '14px 32px',
-            background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
-            color: 'white',
-            border: 'none',
-            borderRadius: '10px',
-            cursor: 'pointer',
-            textDecoration: 'none',
-            transition: 'all 0.3s ease',
-            fontSize: '16px',
-            fontWeight: '600',
-            letterSpacing: '0.3px',
-            boxShadow: '0 4px 16px rgba(30,64,175,0.15)',
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(30,64,175,0.25)';
-            e.currentTarget.style.filter = 'brightness(1.1)';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.transform = 'translateY(0) scale(1)';
-            e.currentTarget.style.boxShadow = '0 4px 16px rgba(30,64,175,0.15)';
-            e.currentTarget.style.filter = 'brightness(1)';
-          }}
-        >
-          Get Quote
-        </Link>
+        <div style={{
+          display: 'flex',
+          gap: '20px',
+          alignItems: 'center',
+        }} className="button-container">
+          {user ? (
+            <div className="relative">
+              <button
+                onClick={() => setIsProfileOpen(!isProfileOpen)}
+                className="flex items-center space-x-2"
+                style={{
+                  padding: '14px 32px',
+                  background: '#EEF2FF',
+                  color: '#1e40af',
+                  border: 'none',
+                  borderRadius: '10px',
+                  cursor: 'pointer',
+                  textDecoration: 'none',
+                  transition: 'all 0.3s ease',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  letterSpacing: '0.3px',
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.backgroundColor = '#E0E7FF';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.backgroundColor = '#EEF2FF';
+                }}
+              >
+                <span>Hi, {user.name}</span>
+                <svg 
+                  className={`w-4 h-4 transition-transform ${isProfileOpen ? 'rotate-180' : ''}`}
+                  xmlns="http://www.w3.org/2000/svg" 
+                  viewBox="0 0 20 20" 
+                  fill="currentColor"
+                >
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
 
-        {user ? (
-          <div className="relative">
-            <button
-              onClick={() => setIsProfileOpen(!isProfileOpen)}
-              className="flex items-center space-x-2"
+              {isProfileOpen && (
+                <div 
+                  className="absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                  style={{
+                    animation: 'fadeIn 0.2s ease-out',
+                  }}
+                >
+                  <div className="py-1">
+                    <Link
+                      to="/profile"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setIsProfileOpen(false)}
+                    >
+                      Your Profile
+                    </Link>
+                    <Link
+                      to="/settings"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setIsProfileOpen(false)}
+                    >
+                      Settings
+                    </Link>
+                    <button
+                      onClick={() => {
+                        logout();
+                        navigate('/');
+                        setIsProfileOpen(false);
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Sign out
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link
+              to="/login"
               style={{
                 padding: '14px 32px',
                 background: '#EEF2FF',
@@ -211,6 +283,7 @@ const Navbar: React.FC = () => {
                 fontWeight: '600',
                 letterSpacing: '0.3px',
               }}
+              className="login-button"
               onMouseOver={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
                 e.currentTarget.style.backgroundColor = '#E0E7FF';
@@ -220,81 +293,47 @@ const Navbar: React.FC = () => {
                 e.currentTarget.style.backgroundColor = '#EEF2FF';
               }}
             >
-              <span>Hi, {user.name}</span>
-              <svg 
-                className={`w-4 h-4 transition-transform ${isProfileOpen ? 'rotate-180' : ''}`}
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 20 20" 
-                fill="currentColor"
-              >
-                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </button>
+              Login
+            </Link>
+          )}
+        </div>
 
-            {isProfileOpen && (
-              <div 
-                className="absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5"
-                style={{
-                  animation: 'fadeIn 0.2s ease-out',
-                }}
-              >
-                <div className="py-1">
-                  <Link
-                    to="/profile"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    onClick={() => setIsProfileOpen(false)}
-                  >
-                    Your Profile
-                  </Link>
-                  <Link
-                    to="/settings"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    onClick={() => setIsProfileOpen(false)}
-                  >
-                    Settings
-                  </Link>
-                  <button
-                    onClick={() => {
-                      logout();
-                      navigate('/');
-                      setIsProfileOpen(false);
-                    }}
-                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >
-                    Sign out
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        ) : (
-          <Link
-            to="/login"
-            style={{
-              padding: '14px 32px',
-              background: '#EEF2FF',
-              color: '#1e40af',
-              border: 'none',
-              borderRadius: '10px',
-              cursor: 'pointer',
-              textDecoration: 'none',
-              transition: 'all 0.3s ease',
-              fontSize: '16px',
-              fontWeight: '600',
-              letterSpacing: '0.3px',
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.backgroundColor = '#E0E7FF';
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.backgroundColor = '#EEF2FF';
-            }}
-          >
-            Login
-          </Link>
-        )}
+        <style>
+          {`
+            @media (max-width: 768px) {
+              .button-container {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+              }
+              .nav-links {
+                order: 4;
+                width: 100%;
+                display: ${isMenuOpen ? 'flex' : 'none'};
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 20px !important;
+              }
+              .nav-links a {
+                width: 80%;
+                text-align: center;
+              }
+              .get-quote-button {
+                width: 80% !important;
+                text-align: center !important;
+                justify-content: center;
+                display: flex !important;
+              }
+              .login-button {
+                width: 80% !important;
+                text-align: center !important;
+                justify-content: center;
+                display: flex !important;
+              }
+            }
+          `}
+        </style>
       </div>
     </nav>
   );
