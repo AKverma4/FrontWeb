@@ -1,6 +1,10 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import './TrainerProfile.css';
+import trainer1 from '../assets/1.jfif';
+import trainer2 from '../assets/2.jfif';
+import trainer3 from '../assets/3.jfif';
+import trainer4 from '../assets/Ajaypic.png';
 
 // Define trainer data interface
 interface TrainerData {
@@ -23,7 +27,7 @@ const trainersData: { [key: string]: TrainerData } = {
     id: 'john-doe',
     name: 'John Doe',
     role: 'Equipment Specialist',
-    image: '/src/assets/1.jfif',
+    image: trainer1,
     bio: 'John is a seasoned equipment specialist with over 10 years of experience in heavy machinery operations and training.',
     expertise: [
       'Heavy Equipment Operation',
@@ -46,7 +50,7 @@ const trainersData: { [key: string]: TrainerData } = {
     id: 'sarah-johnson',
     name: 'Sarah Johnson',
     role: 'Safety Expert',
-    image: '/src/assets/2.jfif',
+    image: trainer2,
     bio: 'Sarah specializes in workplace safety protocols and has trained numerous teams in safe equipment operation.',
     expertise: [
       'Safety Regulations',
@@ -69,7 +73,7 @@ const trainersData: { [key: string]: TrainerData } = {
     id: 'mike-wilson',
     name: 'Mike Wilson',
     role: 'Heavy Machinery Instructor',
-    image: '/src/assets/3.jfif',
+    image: trainer3,
     bio: 'Mike is an expert in heavy machinery operations with extensive experience in construction and industrial equipment.',
     expertise: [
       'Crane Operations',
@@ -92,7 +96,7 @@ const trainersData: { [key: string]: TrainerData } = {
     id: 'emily-brown',
     name: 'Emily Brown',
     role: 'Technical Specialist',
-    image: '/src/assets/Ajaypic.png',
+    image: trainer4,
     bio: 'Emily specializes in technical training and equipment diagnostics, helping teams master complex machinery.',
     expertise: [
       'Technical Training',
