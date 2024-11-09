@@ -20,6 +20,9 @@ import Trainers from './components/Trainers';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import TrainerProfile from './components/TrainerProfile';
+import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
+import Profile from './components/Profile';
 
 const App: React.FC = () => {
   return (
@@ -50,6 +53,9 @@ const App: React.FC = () => {
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/trainer/:id" element={<TrainerProfile />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<SignupForm />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
           <Footer />
         </div>

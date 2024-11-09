@@ -1,64 +1,85 @@
 import React, { createContext, useContext, useState } from 'react';
 
+interface User {
+  email: string;
+  name: string;
+  phone?: string;
+  address?: string;
+  bio?: string;
+  profilePicture?: string;
+}
+
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
-  isAuthenticated: boolean;
-}
-
-interface User {
-  id: string;
-  email: string;
-  name: string;
+  logout: () => Promise<void>;
+  signup: (name: string, email: string, password: string) => Promise<void>;
+  updateProfile: (data: Partial<User>) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>({
+    email: 'test@example.com',
+    name: 'Test User',
+    phone: '',
+    address: '',
+    bio: '',
+  });
 
-  const login = async (email: string, password: string) => {
-    // Implement your login logic here
-    // This is just a mock implementation
+  const login = async (email: string, _password: string) => {
     try {
-      // Mock API call
-      const response = await mockLoginAPI(email, password);
-      setUser(response.user);
+      // Example API call:
+      // const response = await api.login(email, _password);
+      // setUser(response.data.user);
+      setUser({ email, name: email.split('@')[0] }); // Temporary example
     } catch (error) {
       throw new Error('Login failed');
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    // Implement your logout logic here
     setUser(null);
   };
 
+  const signup = async (name: string, email: string, _password: string) => {
+    try {
+      // Example API call:
+      // const response = await api.signup(name, email, _password);
+      // setUser(response.data.user);
+      setUser({ email, name }); // Temporary example
+    } catch (error) {
+      throw new Error('Signup failed');
+    }
+  };
+
+  const updateProfile = async (data: Partial<User>) => {
+    try {
+      console.log('Updating profile with:', data);
+      
+      setUser(prev => {
+        if (!prev) return null;
+        const updatedUser = { ...prev, ...data };
+        console.log('Updated user:', updatedUser);
+        return updatedUser;
+      });
+      
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      return Promise.resolve();
+    } catch (error) {
+      console.error('Profile update error:', error);
+      throw new Error('Failed to update profile');
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{
-      user,
-      login,
-      logout,
-      isAuthenticated: !!user,
-    }}>
+    <AuthContext.Provider value={{ user, login, logout, signup, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );
-};
-
-// Mock function - replace with actual API call
-const mockLoginAPI = async (email: string, _password: string) => {
-  return new Promise<{ user: User }>((resolve) => {
-    setTimeout(() => {
-      resolve({
-        user: {
-          id: '1',
-          email,
-          name: 'Test User',
-        },
-      });
-    }, 1000);
-  });
 };
 
 export const useAuth = () => {

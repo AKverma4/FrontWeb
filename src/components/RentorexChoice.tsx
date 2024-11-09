@@ -45,7 +45,7 @@ const RentorexChoice: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="text-4xl font-bold text-gray-900 mb-4"
           >
-            Why Choose Rentorex
+            Why Choose Digimart
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}

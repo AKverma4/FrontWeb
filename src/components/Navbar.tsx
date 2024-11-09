@@ -1,8 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isProfileOpen, setIsProfileOpen] = React.useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
@@ -14,6 +18,11 @@ const Navbar: React.FC = () => {
       @keyframes shine {
         0% { left: -100%; }
         100% { left: 200%; }
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
       }
       
       @media (max-width: 768px) {
@@ -183,6 +192,109 @@ const Navbar: React.FC = () => {
         >
           Get Quote
         </Link>
+
+        {user ? (
+          <div className="relative">
+            <button
+              onClick={() => setIsProfileOpen(!isProfileOpen)}
+              className="flex items-center space-x-2"
+              style={{
+                padding: '14px 32px',
+                background: '#EEF2FF',
+                color: '#1e40af',
+                border: 'none',
+                borderRadius: '10px',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                transition: 'all 0.3s ease',
+                fontSize: '16px',
+                fontWeight: '600',
+                letterSpacing: '0.3px',
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.backgroundColor = '#E0E7FF';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.backgroundColor = '#EEF2FF';
+              }}
+            >
+              <span>Hi, {user.name}</span>
+              <svg 
+                className={`w-4 h-4 transition-transform ${isProfileOpen ? 'rotate-180' : ''}`}
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 20 20" 
+                fill="currentColor"
+              >
+                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
+
+            {isProfileOpen && (
+              <div 
+                className="absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                style={{
+                  animation: 'fadeIn 0.2s ease-out',
+                }}
+              >
+                <div className="py-1">
+                  <Link
+                    to="/profile"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => setIsProfileOpen(false)}
+                  >
+                    Your Profile
+                  </Link>
+                  <Link
+                    to="/settings"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => setIsProfileOpen(false)}
+                  >
+                    Settings
+                  </Link>
+                  <button
+                    onClick={() => {
+                      logout();
+                      navigate('/');
+                      setIsProfileOpen(false);
+                    }}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Sign out
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <Link
+            to="/login"
+            style={{
+              padding: '14px 32px',
+              background: '#EEF2FF',
+              color: '#1e40af',
+              border: 'none',
+              borderRadius: '10px',
+              cursor: 'pointer',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+              fontSize: '16px',
+              fontWeight: '600',
+              letterSpacing: '0.3px',
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.backgroundColor = '#E0E7FF';
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.backgroundColor = '#EEF2FF';
+            }}
+          >
+            Login
+          </Link>
+        )}
       </div>
     </nav>
   );
